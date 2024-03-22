@@ -39,7 +39,9 @@ def get_installer_url(locale):
     versions = response.json()[0]["response"]["Windows"]["Kaspersky4Win"]["Downloader"][
         site
     ]
-    max_version_key = max(versions, key=lambda k: float(k) if k.isdigit() else -1) # Get the max version, usually only one version, just in case
+    max_version_key = max(
+        versions, key=lambda k: float(k) if k.isdigit() else -1
+    )  # Get the max version, usually only one version, just in case
     url = versions[str(max_version_key)][locale]["Link"]
     return url
 
@@ -57,7 +59,7 @@ def download_and_get_path(url):
 
 if __name__ == "__main__":
     if os.name != "nt":
-        raise NotImplementedError("Only Windows is supported")
+        raise NotImplementedError("Only Windows is supported.")
 
     default_locale = "zh-Hans-CN"
 
@@ -71,8 +73,17 @@ if __name__ == "__main__":
     if locale not in FAKE_ACTIVATION_CODE:
         raise ValueError(f"Unsupported locale: {locale}")
 
-    print("This script will install Kaspersky Free Antivirus for Windows")
-    print("Attention: If you cancel the installation, do not use the installer shortcut on the desktop, it may not activate KFA automatically.")
+    print("This script will install Kaspersky Free Antivirus (KFA) for Windows.")
+    print(
+        "Attention: If you cancel the installation, do not use the installer shortcut on the desktop, it will not activate KFA automatically."
+    )
+    print(
+        "If KFA asks for login or activation code, please use the activation code: "
+        + FAKE_ACTIVATION_CODE[locale]
+    )
+    print(
+        "If KFA requests for an email address, please close the window and open KFA again."
+    )
     installer_url = get_installer_url(locale)
     print(installer_url)
     installer_path = download_and_get_path(installer_url)
