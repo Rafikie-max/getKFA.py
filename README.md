@@ -9,3 +9,9 @@ This script requests for free antivirus installer from free-antivirus download p
 ```shell
 pyinstaller.exe -F .\getKFA.py -c --icon=startup_5.ico
 ```
+
+## Usage
+
+```shell
+getKFA.exe en-INT/zh-Hans-CN/Optional(Default zh-Hans-CN)
+```
