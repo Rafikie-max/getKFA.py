@@ -47,7 +47,7 @@ def get_installer_url(locale):
 
 
 def download_and_get_path(url):
-    temp_dir = tempfile.gettempdir()
+    temp_dir = tempfile.mkdtemp()
     response = requests.get(url, stream=True)
     response.raise_for_status()
     file_name = url.split("/")[-1]
