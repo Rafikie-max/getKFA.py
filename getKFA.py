@@ -90,5 +90,9 @@ if __name__ == "__main__":
     print(installer_path)
 
     subprocess.Popen(
-        [installer_path, "/pACTIVATIONCODE=" + FAKE_ACTIVATION_CODE[locale]],
+        [
+            installer_path,
+            "/pSKIPPRODUCTCHECK=1",
+            "/pACTIVATIONCODE=" + FAKE_ACTIVATION_CODE[locale],
+        ],
     )
